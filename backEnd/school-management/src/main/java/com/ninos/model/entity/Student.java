@@ -9,10 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -48,20 +45,20 @@ public class Student {
     @Column(nullable = false, length = 64)
     private String level;
 
-//    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
-//    private Set<Course> courses = new HashSet<>();
+    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
+    private Set<Course> courses = new HashSet<>();
 
 
-//    @OneToOne(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
-//    private User user;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;
 
 
 
-//    public Student(String firstName, String lastName, String level, User user) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.level = level;
-//        this.user = user;
-//    }
+    public Student(String firstName, String lastName, String level, User user) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.level = level;
+        this.user = user;
+    }
 }

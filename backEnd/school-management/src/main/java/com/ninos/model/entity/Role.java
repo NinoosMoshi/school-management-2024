@@ -1,19 +1,13 @@
 package com.ninos.model.entity;
 
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,12 +35,13 @@ public class Role {
     private String name;
 
 
-//    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY) // lazy because we don't want to get users when we get role
-//    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY) // lazy because we don't want to get users when we get role
+    private Set<User> users = new HashSet<>();
 
 
 
-//    public Role(String name) {
-//        this.name = name;
-//    }
+    public Role(String name) {
+        this.name = name;
+    }
+
 }

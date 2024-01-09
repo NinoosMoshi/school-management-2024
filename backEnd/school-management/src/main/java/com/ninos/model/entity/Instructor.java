@@ -9,9 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -48,18 +45,19 @@ public class Instructor {
     @Column(nullable = false, length = 64)
     private String summary;
 
-//    @OneToMany(mappedBy = "instructor",fetch = FetchType.LAZY)
-//    private Set<Course> courses = new HashSet<>();
+    @OneToMany(mappedBy = "instructor",fetch = FetchType.LAZY)
+    private Set<Course> courses = new HashSet<>();
 
-//    @OneToOne(cascade = CascadeType.REMOVE)  // when we remove instructor it will remove user automatically
-//    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
-//    private User user;
+    @OneToOne(cascade = CascadeType.REMOVE)  // when we remove instructor it will remove user automatically
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private User user;
 
-//    public Instructor(String firstName, String lastName, String summary, User user) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.summary = summary;
-//        this.user = user;
-//    }
+    public Instructor(String firstName, String lastName, String summary, User user) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.summary = summary;
+        this.user = user;
+    }
+
 }
 
